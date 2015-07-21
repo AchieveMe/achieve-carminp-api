@@ -15,19 +15,10 @@ plugins {
 	id 'eclipse'
 	id 'idea'
 	id 'org.flywaydb.flyway' version '3.2.1'
+	id 'pl.allegro.tech.build.axion-release' version '1.3.0'
 }
 
 apply plugin: 'spring-boot'
-
-jar {
-    baseName = 'carminp-core'
-    version = '0.0.1-SNAPSHOT'
-}
-
-flyway {
-    url = 'jdbc:postgresql://localhost:5432/carminp'
-    schemas = ['carminp']
-}
 
 test {
 	forkEvery = 5
@@ -36,6 +27,8 @@ test {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+project.version = scmVersion.version
 
 repositories {
     mavenCentral()
@@ -54,6 +47,13 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test") 
 }
 
+task myJavadocs(type: Javadoc) {
+    failOnError = false
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
 
 eclipse {
     classpath {
@@ -62,10 +62,18 @@ eclipse {
     }
 }
 
-task myJavadocs(type: Javadoc) {
-    failOnError = false
+jar {
+    baseName = 'carminp-core-${project.version}'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/carminp'
+    schemas = ['carminp']
+}
+
+scmVersion {
+    tag {
+        prefix = 'carminp-core'
+    }
+    versionCreator 'versionWithBranch'
 }
