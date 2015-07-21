@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  datasource:
+    platform: h2
+    url: jdbc:h2:file:/tmp/carminp;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+    username: sa

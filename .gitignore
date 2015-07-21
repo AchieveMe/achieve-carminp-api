@@ -1,0 +1,23 @@
+# Java files
+*.class
+.springBeans
+
+# Eclipse files
+.classpath
+.project
+.tern-project
+.settings/
+
+# Configuration files
+gradle.properties
+src/main/resources/application-production.yml
+
+.gradle
+build/
+bin/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
