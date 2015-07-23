@@ -1,12 +1,15 @@
 package it.achiev.carminp.core.domain.entity;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -30,6 +33,9 @@ public class Author implements Serializable {
 	@Column(name = "author_name", nullable = false, unique = true, length = 60)
 	private String nameAuthor;
 
+	@OneToMany(mappedBy = "author", orphanRemoval = true)
+	private List<Phrase> phrases = new LinkedList<>();
+	
 	protected Author() {}
 
 	public Author(String nameAuthor) {
@@ -47,6 +53,18 @@ public class Author implements Serializable {
 
 	public void setNameAuthor(String nameAuthor) {
 		this.nameAuthor = nameAuthor;
+	}
+
+	public List<Phrase> getPhrases() {
+		return phrases;
+	}
+
+	public void setPhrases(List<Phrase> phrases) {
+		this.phrases = phrases;
+	}
+	
+	public void addPhrases(Phrase phrase) {
+		this.phrases.add(phrase);
 	}
 
 	@Override
@@ -82,7 +100,6 @@ public class Author implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Author [idAuthor=" + idAuthor + ", nameAuthor=" + nameAuthor + "]";
+		return "Author [idAuthor=" + idAuthor + ", nameAuthor=" + nameAuthor + ", phrases=" + phrases + "]";
 	}
-	
 }

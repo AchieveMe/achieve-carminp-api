@@ -8,7 +8,10 @@
 CREATE TABLE IF NOT EXISTS carminp.TBL_PHRASE (
   author_id UUID NOT NULL,
   text CHARACTER VARYING(500) NOT NULL,
-  CONSTRAINT phrase_author_pk PRIMARY KEY (author_id)
+  CONSTRAINT TBL_AUTHOR_FK FOREIGN KEY (author_id)
+  REFERENCES TBL_AUTOR (author_id) MATCH SIMPLE
+  ON UPDATE NO ACTION 
+  ON DELETE NO ACTION
 );
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

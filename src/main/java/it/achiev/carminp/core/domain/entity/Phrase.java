@@ -1,11 +1,18 @@
 package it.achiev.carminp.core.domain.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author Alberto Cerqueira
@@ -18,7 +25,14 @@ public class Phrase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "author_id", nullable = false, unique = true, length = 60)
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(name = "phrase_id", columnDefinition = "UUID", insertable = false, updatable = false)
+	private UUID idPhrase;
+	
+	@Valid
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "author_id", nullable = false)
 	private Author author;
 	
 	@Column(name = "text", nullable = false, unique = true, length = 60)
@@ -30,6 +44,10 @@ public class Phrase implements Serializable {
 		super();
 		this.author = author;
 		this.text = text;
+	}
+
+	public UUID getIdPhrase() {
+		return idPhrase;
 	}
 
 	public Author getAuthor() {
@@ -52,8 +70,7 @@ public class Phrase implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		result = prime * result + ((idPhrase == null) ? 0 : idPhrase.hashCode());
 		return result;
 	}
 
@@ -66,21 +83,16 @@ public class Phrase implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Phrase other = (Phrase) obj;
-		if (author == null) {
-			if (other.author != null)
+		if (idPhrase == null) {
+			if (other.idPhrase != null)
 				return false;
-		} else if (!author.equals(other.author))
-			return false;
-		if (text == null) {
-			if (other.text != null)
-				return false;
-		} else if (!text.equals(other.text))
+		} else if (!idPhrase.equals(other.idPhrase))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Phrase [author=" + author + ", text=" + text + "]";
+		return "Phrase [idPhrase=" + idPhrase + ", author=" + author + ", text=" + text + "]";
 	}
 }
