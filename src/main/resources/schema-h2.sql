@@ -16,12 +16,11 @@ CREATE TABLE IF NOT EXISTS carminp.TBL_AUTHOR (
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS carminp.TBL_PHRASE (
+  phrase_id UUID NOT NULL DEFAULT RANDOM_UUID(),
+  phrase_phrase CHARACTER VARYING(500) NOT NULL,
   author_id UUID NOT NULL,
-  text CHARACTER VARYING(500) NOT NULL,
-  CONSTRAINT TBL_AUTHOR_FK FOREIGN KEY (author_id)
-  REFERENCES TBL_AUTOR (author_id) MATCH SIMPLE
-  ON UPDATE NO ACTION 
-  ON DELETE NO ACTION
+  FOREIGN KEY (author_id)
+    REFERENCES carminp.TBL_AUTHOR(author_id)
 );
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

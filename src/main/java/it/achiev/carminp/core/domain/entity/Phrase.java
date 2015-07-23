@@ -16,7 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author Alberto Cerqueira
- * @since 0.1
+ * @since 1.0-alpha
  */
 @Entity
 @Table(name = "TBL_PHRASE")
@@ -35,15 +35,15 @@ public class Phrase implements Serializable {
 	@JoinColumn(name = "author_id", nullable = false)
 	private Author author;
 	
-	@Column(name = "text", nullable = false, unique = true, length = 60)
-	private String text;
+	@Column(name = "phrase_phrase", nullable = false, unique = true, length = 60)
+	private String phrase;
 	
 	protected Phrase() {}
 
-	public Phrase(Author author, String text) {
+	public Phrase(Author author, String phrase) {
 		super();
 		this.author = author;
-		this.text = text;
+		this.phrase = phrase;
 	}
 
 	public UUID getIdPhrase() {
@@ -58,12 +58,12 @@ public class Phrase implements Serializable {
 		this.author = author;
 	}
 
-	public String getText() {
-		return text;
+	public String getPhrase() {
+		return phrase;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setPhrase(String phrase) {
+		this.phrase = phrase;
 	}
 
 	@Override
@@ -93,6 +93,6 @@ public class Phrase implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Phrase [idPhrase=" + idPhrase + ", author=" + author + ", text=" + text + "]";
+		return "Phrase [idPhrase=" + idPhrase + ", author=" + author + ", phrase=" + phrase + "]";
 	}
 }
