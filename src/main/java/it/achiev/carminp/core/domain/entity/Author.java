@@ -19,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "TBL_AUTHOR")
 public class Author implements Serializable {
 
-	private static final long serialVersionUID = -1642804618372193087L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(generator = "uuid2")
