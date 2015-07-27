@@ -8,7 +8,8 @@
 CREATE TABLE IF NOT EXISTS carminp.TBL_AUTHOR (
   author_id UUID NOT NULL DEFAULT uuid_generate_v1mc(),
   author_name CHARACTER VARYING(60) NOT NULL,
-  CONSTRAINT author_pk PRIMARY KEY (author_id)
+  CONSTRAINT author_pk PRIMARY KEY (author_id),
+  CONSTRAINT author_name_pk UNIQUE(author_name)
 );
 
 ------------------------------------------------------------------------- INDEX: uk_author__author_name -----------------------------------------------------------------------

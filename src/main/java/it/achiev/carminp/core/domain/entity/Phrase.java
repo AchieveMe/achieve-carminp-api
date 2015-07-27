@@ -19,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @since 1.0-alpha
  */
 @Entity
-@Table(name = "TBL_PHRASE")
+@Table(name = "TBL_PHRASE", schema = "carminp")
 public class Phrase implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,10 +32,10 @@ public class Phrase implements Serializable {
 	
 	@Valid
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "author_id", nullable = false)
+	@JoinColumn(name = "author_name", nullable = false)
 	private Author author;
 	
-	@Column(name = "phrase_phrase", nullable = false, unique = true, length = 60)
+	@Column(name = "phrase_phrase", nullable = false, unique = true, length = 244)
 	private String phrase;
 	
 	protected Phrase() {}

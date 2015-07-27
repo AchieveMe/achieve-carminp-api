@@ -19,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @since 0.1
  */
 @Entity
-@Table(name = "TBL_AUTHOR")
+@Table(name = "TBL_AUTHOR", schema = "carminp")
 public class Author implements Serializable {
 
 	private static final long serialVersionUID = 1L;

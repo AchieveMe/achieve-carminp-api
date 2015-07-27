@@ -1,5 +1,7 @@
 package it.achiev.carminp.core.domain.repository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -15,6 +17,8 @@ import it.achiev.carminp.core.domain.entity.Author;
 @RepositoryRestResource(path = "author")
 public interface AuthorRepository extends PagingAndSortingRepository<Author, UUID> {
 	
-	Author findByNameAuthor(@Param("nameAuthor") String nameAuthor);
+	Optional<Author> findByNameAuthor(@Param("nameAuthor") String nameAuthor);
+	
+	List<Author> findByPhrases(@SuppressWarnings("rawtypes") @Param("phrases")List phrases);
 
 }
