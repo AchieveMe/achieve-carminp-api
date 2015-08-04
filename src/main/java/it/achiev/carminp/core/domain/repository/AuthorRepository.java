@@ -1,6 +1,5 @@
 package it.achiev.carminp.core.domain.repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,6 +18,4 @@ public interface AuthorRepository extends PagingAndSortingRepository<Author, UUI
 	
 	Optional<Author> findByNameAuthor(@Param("nameAuthor") String nameAuthor);
 	
-	List<Author> findByPhrases(@SuppressWarnings("rawtypes") @Param("phrases")List phrases);
-
 }
